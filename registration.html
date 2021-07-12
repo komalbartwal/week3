@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Registration form</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body>
+	<form ng-app="registrationapp" ng-controller="registrationcontroller" name="form" novalidate>
+		<label>Registration Form</label><br><br>
+		<label>Name:</label>
+		<input type="text" name="name" ng-model="regName"  required/>
+		<span  ng-show="form.name.$invalid"></span>
+		<span style="color:red" ng-show="form.name.$error.required">name is required</span>
+		
+		<br>
+		<label>Email:</label>
+		<input type="email" name="email" ng-model="regEmail" required/>
+		<span style="color:red" ng-show="form.email.$error.required">email is required</span>
+		<span ng-show="form.email.$error.email">Please enter a valid email.</span><br>
+<br>
+		<label>Phone_no:</label>
+		<input type="tel" name="Phone_no" ng-model="regPhone" /><br>
+		<label>Password</label>
+		<input type="Password" name="Password" ng-model="regPass" required />
+		<span style="color:red" ng-show="form.Password.$error.required">Please enter a password.</span><br><br>
+		<button type="reset" ng-click="Add()" ng-disabled ="form.name.$invalid && form.name.$invalid">submit</button>
+		<button ng-click="delete()">Delete</button>
+		<table border="1" >
+			<tr>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Phone_no</th>
+				<th>Password</th>
+			</tr>
+			<tr>
+				<td ng-repeat="name in names">{{name}}</td>
+				<td ng-repeat="Email in email">{{Email}}</td>
+				<td ng-repeat="Phone in Phone_no">{{Phone}}</td>
+				<td ng-repeat="pass in password">{{pass}}</td>
+			</tr>
+		</table>
+		
+</form>
+</body>
+<script type="text/javascript">
+	var app = angular.module("registrationapp", []);
+	app.controller("registrationcontroller", function($scope){
+		$scope.names= [];
+		$scope.email= [];
+		$scope.Phone_no= [];
+		$scope.password= [];
+
+		$scope.Add = function (){
+			$scope.names.push($scope.regName);
+			$scope.email.push($scope.regEmail);
+			$scope.Phone_no.push($scope.regPhone);
+			$scope.password.push($scope.regPass);
+
+			$scope.regName="";
+			$scope.regEmail="";
+			$scope.regPhone="";
+			$scope.regPass="";
+
+		};
+
+		$scope.delete = function(){
+			$scope.names.splice(0);
+			$scope.email.splice(0);
+			$scope.Phone_no.splice(0);
+			$scope.password.splice(0);
+		};
+
+	
+		// angular.isString($scope.name);
+		// angular.isNmber($scope.Phone_no);
+		
+
+
+
+	});
+</script>
+</html>
