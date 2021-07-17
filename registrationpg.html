@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Registration form</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<style type="text/css">
+		body{
+			background-color: peachpuff;
+			padding-left: 30%;
+		}
+	</style>
+	
+</head>
+<body>
+
+	<form ng-app="myapp" ng-controller="registrationcontroller" name="form" novalidate>
+		<div>
+		<h1>Registration Form</h1><br><br>
+		<label>First Name:</label><br>
+		<input type="text" name="fname" ng-model="regName"  required/>
+		<span  ng-show="form.fname.$invalid"></span>
+		<span style="color:red" ng-show="form.name.$error.required">name is required</span><br>
+		
+		<br>
+		<label>Last Name:</label><br>
+		<input type="text" name="lname" ng-model="regLname" required/>
+		<span style="color:red" ng-show="form.lname.$error.required">lname is required</span>
+		<br>
+		<label>User:</label><br>
+		<input type="text" name="user" ng-model="regUser" /><br>
+		
+
+		<label>Password</label><br>
+		<input type="Password" name="Password" ng-model="regPass" required />
+		<span style="color:red" ng-show="form.Password.$error.required">Please enter a password.</span><br><br>
+
+		<button type="submit" ng-click="regsubmit()" ng-disabled ="form.name.$invalid && form.name.$invalid">Register</button>
+
+		<h1>Login Page</h1>
+
+		<p>username:<br>
+			<input type="text" name="user1" ng-model="logUser" required>
+			<span ng-show="form.user.$invalid"></span>
+			<span ng-show="form.user.$error.required">username is required</span></p><br>
+
+			<p>Password:<br> <input type="password1" name="password" ng-model="logPass" required>
+				<span ng-show="form.password.$invalid"></span>
+				<span ng-show="form.password.$error.required">password is required</span></p>
+		<br>
+
+		<input type="submit" value="login"  ng-click="logsubmit()">
+		<span ng-show="check" style="color: red">Login successful	</span>
+		<span ng-show="fail" style="color: red">Pls register or Enter correct details</span>
+		<button><a href="shoes.html">Product</button><br><br>
+
+
+		<input type="text" name="searchuser" placeholder="search user" ng-model="searchuser">
+		<table border="1">
+			<th >Username</th>
+			<tr ng-repeat="x in registration  | filter:searchuser">
+			<td>{{x.regUser}}</td>
+			</tr>
+		</table>
+
+</div>
+		
+		
+</form>
+</body>
+<script type="text/javascript">
+	var app = angular.module("myapp", []);
+	app.controller("registrationcontroller", function($scope){
+		$scope.registration=[];
+		var i =$scope.logUser
+
+		$scope.regsubmit = function(){
+			var a =$scope.regUser
+			var b =$scope.regPass
+			var c =$scope.regName
+			var d =$scope.regLname
+
+			$scope.registration.push({'regName': c,'regLname': d, 'regUser': a, 'regPass': b});
+			console.log($scope.registration)
+		}
+
+		$scope.logsubmit=function(){
+
+			$scope.check=false
+			$scope.fail=false
+			console.log(user_index=$scope.registration.findIndex(x=>x.regUser===$scope.logUser))
+			console.log(password_index=$scope.registration.findIndex(x=>x.regPass===$scope.logPass)) 
+			
+
+			if( (password_index===user_index ) && password_index>=0 && user_index >=0 ){
+				$scope.check=true
+			}else{
+				$scope.check=false;
+				$scope.fail=true
+			}
+		}
+
+
+		
+	});
+</script>
+</html>

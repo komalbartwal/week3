@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Shoes</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body>
+	<form ng-app="prouctapp" ng-controller="prodcontroller" name="Form" >
+		<h1>Product</h1>
+		<p>Pin Code</p>
+		<input type="text" name="pincode" maxLength="6" placeholder="enter Pin Code" ng-model="pincode">
+		<div ng-repeat="p in pin |  filter: searchpin "></div>
+		<div ng-show='available' >Available</div>
+		<div ng-show='notavailable' style="color: red">Not available</div>
+		<br>
+		
+
+	<h1><a href="shoe.jpg">Adidas Women's Literunner W Running Shoe</h1></a>
+	<img src="C:\Users\KOMAL\Desktop\TE COMPS\Training\Assigmnet3\shoe.jpg" width="20%" height="40%">
+	<ul>
+		<li>Price:₹ 1,415.00 - ₹ 2,012.00</li>
+		<li>Sole: EVA</li>
+		<li>Closure: Speed Laces</li>
+		<li>Shoe Width: Medium</li>
+		<li>Adidas Women Running sports shoes</li>
+	</ul>
+	<div id="p1"><a href="shoe1.jpg"><h1>Adidas Women's Sweepit W Running Shoe</h1></a>
+	<img src="C:\Users\KOMAL\Desktop\TE COMPS\Training\Assigmnet3\shoe1.jpg" width="20%" height="40%">
+	<ul>
+		<li>₹ 2,414.00</li>
+		<li>Sole: Rubber</li>
+		<li>Closure: Speed Laces</li>
+		<li>Shoe Width: Medium</li>
+		<li>Adidas Women Running sports shoes</li>
+	</ul></div>
+	<div><h1><a href="shoe2.jpg">XTEP Women's Pink Fashionable Athletics Air Mega Sports Running Shoes</h1></a>
+		<img src="C:\Users\KOMAL\Desktop\TE COMPS\Training\Assigmnet3\shoe2.jpg" width="20%" height="40%">
+		<ul>
+			<li>Price:	₹ 5,599.00</li>
+			<li>Sole: Leather</li>
+			<li>Closure: Lace-Up</li>
+			<li>Shoe Width: Medium</li>
+			<li>Latest Air Mega Technology : The Air Mega Technology features with High Rebounding and Soft Cushioning. These running shoes for women provides best responsiveness while running.</li>
+			<li>Stylish Soft Textile Upper : The lightweight and breathable textile upper women sports shoes will keep your feet cool and dry. The Stylish Lace-up Closure was finely arranged for Firm fit.</li>
+		</ul></div>
+
+		<script type="text/javascript">
+			var app = angular.module("productapp", []);
+			app.controller("prodcontroller", function($scope,$rootscope){
+				$scope.pin=["400080","400604","400608","400615","400607","400601","400605","400609","400701","421204","400602","400603","400606","406007","400610","400708","400612","401107"];
+
+				$scope.searchpin = function(){
+
+				$scope.available=false;
+				$scope.notavailable=true;
+
+					
+
+				if($scope.pin.indexOf($scope.pincode)!=-1){
+					
+					$scope.available=true
+
+				}else{
+					$scope.notavailable=true
+					}
+				}
+
+			}); 
+		
+</script>
+</body>
+</html>
